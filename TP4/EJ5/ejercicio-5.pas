@@ -79,8 +79,33 @@ end;
 
 // TODO: Ordenar por ciudad
 procedure ordenarPorCiudad(var d: info; dL: integer);
+var i, j, p, item: integer;
 begin 
+    for i := 1 to dL -1 do 
+    begin // busca el mímino v[p] entre v[i], ... v[N]
+      p := i;
+      for j := i + 1 to dL do
+          if d[j].codigo < v[p].codigo then
+              p := j;
 
+      // Intercambia v[i] y v[p]
+      item := v[p];
+      v[p] :=  v[i];
+      v[i] := item;
+    end;
+end;
+
+procedure imprimirVector(d: info; dL: integer);
+var i: integer;
+begin 
+    for i := 1 to dL do
+    begin
+        writeln('Fecha: ', d[i].fecha);
+        writeln('Categoria: ', d[i].categoria);
+        writeln('Código: ', d[i].codigo);
+        writeln('Monto: ', d[i].monto);
+        writeln();
+    end;
 end;
 
 // Codigo de las 10 ciudades con mayor cantidad de clientes
@@ -99,8 +124,12 @@ begin
 
     inicializarCategorias(cat);
     cargarClientes(data, dimL);
+    imprimirVector(data, dimL);
 
     procesarCategorias(data, dimL, cat);
-
+    writeln('Cantidad de clientes por cada categoría de monotributo.');
     imprimirCategorias(cat);
+
+    ordenarPorCiudad(data, dimL);
+    imprimirVector(data, dimL);
 end.
