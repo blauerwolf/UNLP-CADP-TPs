@@ -85,7 +85,7 @@ begin
     begin // busca el mímino v[p] entre v[i], ... v[N]
       p := i;
       for j := i + 1 to dL do
-          if d[j].codigo < v[p].codigo then
+          if d[j].codigo < d[p].codigo then
               p := j;
 
       // Intercambia v[i] y v[p]
