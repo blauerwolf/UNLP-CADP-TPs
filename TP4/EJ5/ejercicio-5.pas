@@ -196,7 +196,7 @@ end;
 
 var 
     data: info;
-    dimL: integer;
+    dimL, i: integer;
     cat: categorias;
     ciu: ciudades;
 begin 
@@ -206,7 +206,7 @@ begin
     imprimirVector(data, dimL);
 
     procesarCategorias(data, dimL, cat);
-    writeln('Cantidad de clientes por cada categoría de monotributo.');
+    writeln('Cantidad de clientes por cada categoría de monotributo:');
     imprimirCategorias(cat);
 
     ordenarPorCiudad(data, dimL);
@@ -214,4 +214,7 @@ begin
 
     inicializarCiudades(ciu);
     procesarCiudades(data,  dimL, ciu);
+
+    for i := 1 to 10 do
+        writeln(ciu[i]);
 end.
