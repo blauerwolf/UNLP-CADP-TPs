@@ -147,6 +147,8 @@ var
     i, cont, cActual: integer;
 
 begin
+    i := 1;
+    
     cActual := d[i].ciudad;
 
     while (i <= dL) do
