@@ -182,6 +182,8 @@ begin
             if cont > c[i] then
                 shift(c, i, cont);
         end;
+
+        i := i + 1;
    
     end;
 
