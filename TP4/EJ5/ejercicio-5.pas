@@ -144,18 +144,17 @@ end;
 // Codigo de las 10 ciudades con mayor cantidad de clientes
 procedure procesarCiudades(d: info; dL: integer; var c: ciudades);
 var 
-    i, cont: integer;
-    cActual: ciudad;
+    i, cont, cActual: integer;
 
 begin
-    cActual := d[i];
+    cActual := d[i].ciudad;
 
     while (i <= dL) do
     begin
         // (Re)inicializo el contador parcial de ciudad en 0
         cont := 0;
 
-        while (cActual.ciudad = d[i].ciudad) do
+        while (cActual = d[i].ciudad) do
         begin 
             cont := cont + 1;
         end;
