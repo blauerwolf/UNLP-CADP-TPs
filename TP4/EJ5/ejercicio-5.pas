@@ -89,9 +89,9 @@ begin
               p := j;
 
       // Intercambia v[i] y v[p]
-      item := v[p];
-      v[p] :=  v[i];
-      v[i] := item;
+      item := d[p];
+      d[p] :=  d[i];
+      d[i] := item;
     end;
 end;
 
