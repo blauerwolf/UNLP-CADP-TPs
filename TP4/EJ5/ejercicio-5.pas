@@ -15,6 +15,9 @@ type
 
     categorias = array['A'..'F'] of integer;
 
+    ciudades = array[1..10] of integer;
+
+
 procedure leer(var c: cliente);
 begin
     write('Fecha de firma de contrato: ');
@@ -32,6 +35,7 @@ begin
     end;
 end;
 
+
 procedure inicializarCategorias(var cat: categorias);
 var 
     i: 'A'..'F';
@@ -39,6 +43,7 @@ begin
     for i := 'A' to 'F' do 
         cat[i] := 0;
 end;
+
 
 procedure imprimirCategorias(cat: categorias);
 var
@@ -49,6 +54,7 @@ begin
 
     writeln();
 end;
+
 
 procedure cargarClientes(var d: info; var dL: integer);
 var 
@@ -65,6 +71,7 @@ begin
     end;
 end;
 
+
 // Cantidad de clientes para cada categoria de monotributo
 procedure procesarCategorias(d: info; dL: integer; var cat: categorias);
 var 
@@ -77,7 +84,7 @@ begin
     end;
 end;
 
-// TODO: Ordenar por ciudad
+
 procedure ordenarPorCiudad(var d: info; dL: integer);
 var 
   i, j, p: integer;
@@ -97,6 +104,7 @@ begin
     end;
 end;
 
+
 procedure imprimirVector(d: info; dL: integer);
 var i: integer;
 begin 
@@ -110,12 +118,76 @@ begin
     end;
 end;
 
-// Codigo de las 10 ciudades con mayor cantidad de clientes
-procedure procesarCiudades(d: info; dL: integer);
-var 
-    i: integer;
-begin 
 
+// Inicializo en  0 los contadores de las 10 ciudades con mayor cantidad de clientes.
+procedure inicializarCiudades(var c: ciudades);
+var i: integer;
+begin
+    for i := 1 to 10 do
+        c[i] := 0;
+end;
+
+
+// Procedimiento para actualiar los 
+procedure shift(var c:ciudades; pos: integer; valor: integer);
+var i: integer;
+begin
+    for i := 10 downto pos - 1 do
+    begin 
+        c[i] := c[i-1];
+    end;
+
+    c[pos] := valor;
+end;
+
+
+// Codigo de las 10 ciudades con mayor cantidad de clientes
+procedure procesarCiudades(d: info; dL: integer; var c: ciudades);
+var 
+    i, cont: integer;
+    cActual: ciudad;
+
+begin
+    cActual := d[i];
+
+    while (i <= dL) do
+    begin
+        // (Re)inicializo el contador parcial de ciudad en 0
+        cont := 0;
+
+        while (cActual.ciudad = d[i].ciudad) do
+        begin 
+            cont := cont + 1;
+        end;
+
+        if cont > c[1] then
+            shift(c, 1, cont);
+        else if cont > c[2] then
+            shift(c, 2, cont);
+        else if cont > c[3] then
+            shift(c, 3, cont);
+        else if cont > c[4] then
+            shift(c, 4, cont);
+        else if cont > c[5] then 
+            shift(c, 5, cont);
+        else if cont > c[6] then
+            shift(c, 6, cont);
+        else if cont > c[7] then
+            shift(c, 7, cont);
+        else if cont > c[8] then
+            shift(c, 8, cont);
+        else if cont > c[9] then
+            shift(c, 9, cont);
+        else if cont > c[10] then
+            shift(c, 10, cont);
+          
+    end;
+
+
+    for i := 1 to dL do 
+    begin 
+
+    end;
 end;
 
 var 
