@@ -25,7 +25,23 @@ begin
     readln(a.asistencias);
 end;
 
-// TODO: búsqueda mejorada
+procedure cargarAlumnos(var v:catedra; var dL: integer);
+var  
+    a: alumno;
+begin 
+    leer(a);
+
+    while (a.nro  <> 0) do 
+    begin 
+        dL := dL + 1;
+        v[dL] := a;
+
+        leer(a);
+    end;
+
+end;    
+
+// Busqueda desordenada
 procedure posAlu(cod: integer; c: catedra; dL: integer; var pos: integer; var ok:boolean);
 var 
     i: integer;
@@ -33,7 +49,7 @@ begin
     ok := false;
     i := 1;
 
-    while (not ok) and (i <= dimL) do 
+    while (not ok) and (i <= dL) do 
     begin 
         if (c[i].nro = cod) then 
         begin 
@@ -44,6 +60,38 @@ begin
         begin 
             i := i + 1;
         end;
+    end;
+end;
+
+// Busqueda mejorada
+procedure buscarPosAluE(valor: integer; c: catedra; dL: integer; var pos: integer; var ok:boolean);
+
+begin
+    pos := 1;
+
+    while (pos <= dL) and (c[pos].nro < valor) do 
+    begin 
+        pos := pos + 1;
+    end;
+
+    if ( pos <= dL) and (c[pos].nro = valor) then 
+    begin 
+        ok := true;
+    end
+    else ok := false;
+end;
+
+// TODO: Busqueda dicotomica
+
+procedure insertar(var c: catedra; var dL: integer; a: alumno; var ok: boolean);
+begin
+    ok := false;
+
+    if ((dl + 1) <= DIMENSION) then 
+    begin 
+        ok := true;
+        dL := dL + 1;
+        c[dL] := a;
     end;
 end;
 
@@ -70,4 +118,75 @@ begin
 end;
 
 
+procedure imprimirVector(c: catedra; dL:integer);
+var 
+    i: integer;
+begin 
+    for i := 1 to dL do
+    begin 
+        writeln('Código alumno: ', c[i].nro);
+        writeln('Apellido: ', c[i].apellido);
+        writeln('Nombre: ', c[i].nombre);
+        writeln('Asistencias: ', c[i].asistencias);
+        writeln();
+    end;
+end;
 
+procedure borrarPorCod(var c: catedra; var dL: integer; valor: integer; var ok: boolean);
+var 
+    pos: integer;
+    pude: boolean;
+begin 
+    buscarPosAluE(valor, c, dL, pos, ok);
+    if ok then 
+    begin
+        eliminar(c, dL, pude, pos);
+    end 
+    else 
+        pude := false;
+        
+end;
+
+procedure eliminarAusentes(var c: catedra; var dL: integer);
+var 
+    pos: integer;
+    ok: boolean;
+begin 
+    for pos := 1 to dL do 
+    begin 
+        if c[pos].asistencias = 0 then 
+            eliminar(c, dL, ok, pos);
+    end;
+end;
+
+var 
+    alumnos: catedra;
+    alu: alumno;
+    dimL, pos: integer;
+    ok: boolean;
+
+begin 
+    // TODO: DEBUG
+    
+    dimL := 0;
+    pos := 0;
+
+    cargarAlumnos(alumnos, dimL);
+    buscarPosAluE(40, alumnos, dimL, pos, ok);
+
+    writeln('Ingrese datos de alumno: ');
+    leer(alu);
+    insertar(alumnos, dimL, alu, ok);
+
+    imprimirVector(alumnos, dimL);
+    writeln('------------------------------------');
+
+    borrarPorCod(alumnos, dimL, 40, ok);
+    imprimirVector(alumnos, dimL);
+    writeln('------------------------------------');
+    
+    eliminarAusentes(alumnos, dimL);
+    writeln('------------------------------------');
+
+
+end.
