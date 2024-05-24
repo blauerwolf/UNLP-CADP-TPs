@@ -187,11 +187,6 @@ begin
    
     end;
 
-
-    for i := 1 to dL do 
-    begin 
-
-    end;
 end;
 
 var 
