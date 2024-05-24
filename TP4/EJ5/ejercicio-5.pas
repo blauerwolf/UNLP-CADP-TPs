@@ -68,13 +68,12 @@ end;
 // Cantidad de clientes para cada categoria de monotributo
 procedure procesarCategorias(d: info; dL: integer; var cat: categorias);
 var 
-    i: 'A'..'F';
+    i: integer;
 
 begin 
-    for i := 'A' to 'F' do 
+    for i := 1 to dL do 
     begin 
-        cat[d[dL].categoria] := cat[d[dL].categoria] + 1;
-
+        cat[d[i].categoria] := cat[d[i].categoria] + 1;
     end;
 end;
 
