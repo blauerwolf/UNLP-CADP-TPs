@@ -124,6 +124,7 @@ end;
 procedure inicializarCiudades(var c: ciudades);
 var i: integer;
 begin
+    writeln('coso 2');
     for i := 1 to 10 do
         c[i] := 0;
 end;
@@ -133,7 +134,7 @@ end;
 procedure shift(var c:ciudades; pos: integer; valor: integer);
 var i: integer;
 begin
-    for i := 10 downto pos - 1 do
+    for i := 10 downto (pos - 1) do
     begin 
         c[i] := c[i-1];
     end;
@@ -149,45 +150,55 @@ var
     i, j, cont, cActual: integer;
 
 begin
+    writeln('Ingresa procesar ciudades');
     i := 1;
-
-    cActual := d[i].codigo;
 
     while (i <= dL) do
     begin
         // (Re)inicializo el contador parcial de ciudad en 0
         cont := 0;
+	cActual := d[i].codigo;
 
         while (cActual = d[i].codigo) do
         begin 
             cont := cont + 1;
+	    i := i + 1;
         end;
 
-
-        {
-        if cont > c[1] then
-            shift(c, 1, cont);
-        else if cont > c[2] then
-            shift(c, 2, cont);
+        if (cont > c[1]) then
+            shift(c, 1, cActual)
+        else if (cont > c[2]) then
+            shift(c, 2, cActual)
         else if cont > c[3] then
-            shift(c, 3, cont);
-        .
-        .
-        .
-        else if cont > c[10] then
-            shift(c, 10, cont);
-        }
+            shift(c, 3, cActual)
+        else if cont > c[4] then
+            shift(c, 4, cActual)
+        else if cont > c[5] then
+	    shift(c, 5, cActual)
+	else if cont > c[6] then
+	    shift(c, 6, cActual)
+	else if cont > c[7] then
+	    shift(c, 7, cActual)
+	else if cont > c[8] then
+	    shift(c, 8, cActual)
+	else if cont > c[9] then
+	    shift(c, 9, cActual)
+	else if cont > c[10] then
+	    shift(c, 10, cActual);
         
+	{
         for j := 1 to 10 do
         begin
-            if cont > c[i] then
-                shift(c, i, cont);
+	    writeln('cont: ', cont);
+	    writeln('c[j]: ', c[j], '. J: ', j, '. I: ', i);
+	    readln();
+            if cont > c[j] then
+                shift(c, j, cActual);
         end;
+	}
 
-        i := i + 1;
-   
     end;
-
+    writeln('llega final procesar');
 end;
 
 var 
@@ -209,6 +220,10 @@ begin
     imprimirVector(data, dimL);
 
     inicializarCiudades(ciu);
+
+    for i := 1 to 10 do
+        writeln(ciu[i]);
+
     procesarCiudades(data,  dimL, ciu);
 
     for i := 1 to 10 do
