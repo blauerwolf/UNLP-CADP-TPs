@@ -144,7 +144,7 @@ end;
 // Codigo de las 10 ciudades con mayor cantidad de clientes
 procedure procesarCiudades(d: info; dL: integer; var c: ciudades);
 var 
-    i, cont, cActual: integer;
+    i, j, cont, cActual: integer;
 
 begin
     i := 1;
@@ -161,27 +161,27 @@ begin
             cont := cont + 1;
         end;
 
+
+        {
         if cont > c[1] then
             shift(c, 1, cont);
         else if cont > c[2] then
             shift(c, 2, cont);
         else if cont > c[3] then
             shift(c, 3, cont);
-        else if cont > c[4] then
-            shift(c, 4, cont);
-        else if cont > c[5] then 
-            shift(c, 5, cont);
-        else if cont > c[6] then
-            shift(c, 6, cont);
-        else if cont > c[7] then
-            shift(c, 7, cont);
-        else if cont > c[8] then
-            shift(c, 8, cont);
-        else if cont > c[9] then
-            shift(c, 9, cont);
+        .
+        .
+        .
         else if cont > c[10] then
             shift(c, 10, cont);
-          
+        }
+        
+        for j := 1 to 10 do
+        begin
+            if cont > c[i] then
+                shift(c, i, cont);
+        end;
+   
     end;
 
 
