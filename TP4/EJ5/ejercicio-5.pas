@@ -148,15 +148,15 @@ var
 
 begin
     i := 1;
-    
-    cActual := d[i].ciudad;
+
+    cActual := d[i].codigo;
 
     while (i <= dL) do
     begin
         // (Re)inicializo el contador parcial de ciudad en 0
         cont := 0;
 
-        while (cActual = d[i].ciudad) do
+        while (cActual = d[i].codigo) do
         begin 
             cont := cont + 1;
         end;
