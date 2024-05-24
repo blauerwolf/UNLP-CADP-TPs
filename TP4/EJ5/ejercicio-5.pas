@@ -30,9 +30,10 @@ begin
         write('Código de ciudad: ');
         readln(c.codigo);
         write('Monto: ');
-        readln(c.monto);
-        writeln();
+        readln(c.monto);    
     end;
+
+    writeln();
 end;
 
 
@@ -195,6 +196,7 @@ var
     data: info;
     dimL: integer;
     cat: categorias;
+    ciu: ciudades;
 begin 
 
     inicializarCategorias(cat);
@@ -207,4 +209,7 @@ begin
 
     ordenarPorCiudad(data, dimL);
     imprimirVector(data, dimL);
+
+    inicializarCiudades(ciu);
+    procesarCiudades(data,  dimL, ciu);
 end.
