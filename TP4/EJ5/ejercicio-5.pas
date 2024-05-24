@@ -139,6 +139,7 @@ begin
     end;
 
     c[pos] := valor;
+    writeln('coso');
 end;
 
 
