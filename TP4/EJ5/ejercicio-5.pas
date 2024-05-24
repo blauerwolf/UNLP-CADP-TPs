@@ -79,7 +79,9 @@ end;
 
 // TODO: Ordenar por ciudad
 procedure ordenarPorCiudad(var d: info; dL: integer);
-var i, j, p, item: integer;
+var 
+  i, j, p: integer;
+  item: cliente;
 begin 
     for i := 1 to dL -1 do 
     begin // busca el mímino v[p] entre v[i], ... v[N]
