@@ -61,13 +61,11 @@ begin
         dl := dL + 1;
         d[dL] := c;
 
-        //cat[d[dL].categoria] := cat[d[dL].categoria] + 1;
-
         leer(c);
     end;
 end;
 
-// Cantida de clientes para cada categoria de monotributo
+// Cantidad de clientes para cada categoria de monotributo
 procedure procesarCategorias(d: info; dL: integer; var cat: categorias);
 var 
     i: 'A'..'F';
@@ -103,7 +101,7 @@ begin
     inicializarCategorias(cat);
     cargarClientes(data, dimL);
 
-
+    procesarCategorias(data, dimL, cat);
 
     imprimirCategorias(cat);
 end.
