@@ -63,6 +63,7 @@ begin
     end;
 end;
 
+
 // Busqueda mejorada
 procedure buscarPosAluE(valor: integer; c: catedra; dL: integer; var pos: integer; var ok:boolean);
 
@@ -94,6 +95,7 @@ begin
         c[dL] := a;
     end;
 end;
+
 
 // c: Recibe la posición de un alumno dentro del vector y lo elimina
 procedure eliminar(var c: catedra; var dL:integer; var ok:boolean; pos: integer);
@@ -159,12 +161,16 @@ begin
     end;
 end;
 
+
+{ Declaración de variables de programa }
 var 
     alumnos: catedra;
     alu: alumno;
     dimL, pos: integer;
     ok: boolean;
 
+
+{ Cuerpo principal del programa }
 begin 
     // TODO: DEBUG
     
