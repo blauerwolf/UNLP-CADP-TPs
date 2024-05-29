@@ -2,7 +2,7 @@ program punteros;
 type
     numeros = array[1..10000] of integer;
     puntero_numeros = ^numeros;
-    
+
 var
     n: puntero_numeros;
     num: numeros;
