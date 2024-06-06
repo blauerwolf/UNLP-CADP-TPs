@@ -9,9 +9,6 @@
 }
 
 
-{
-    TODO: En proceso. Aun no terminado
-}
 program ejercicio_5;
 
 //const 
