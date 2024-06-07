@@ -72,7 +72,6 @@ end;
 { Carla la lista de clintes adelante }
 procedure agregarAdelante(var l:lista; dni:integer);
 var 
-    cli: cliente;
     nue: lista;
 
 begin 
@@ -127,7 +126,7 @@ var
     pri: lista;
 begin 
     inicializarLista(pri);
-    RecirCliente(pri);
+    RecibirCliente(pri);
 
     imprimirLista(pri);
 
