@@ -90,12 +90,94 @@ begin
     EstaOrdenada := ok;
 end;
 
+{ Elimina el valor de la lista si existe }
+procedure eliminar(var l:lista; n:integer);
+var 
+    actual, ant : lista;
+begin 
+
+    actual := l;
+
+    while (actual <> nil) do 
+    begin 
+        if (actual^.num <> n) then 
+        begin 
+            ant := actual;
+            actual := actual^.sig;
+        end
+        else begin 
+            if (actual = l) then 
+                l := l^.sig
+            else 
+                ant^.sig := actual^.sig;
+
+            dispose(actual);
+            actual := ant;
+        end;
+    end;
+
+end;
+
+
+{ Inicializa una nueva lista }
+procedure inicializarLista(var l:lista);
+begin 
+    l := nil;
+end;
+
+
+{ Retorna una nueva lista con todos los elementos de la lista L mayores que A y menores que B. }
+procedure sublista(l:lista; var l1: lista; A: integer; B: integer);
+begin 
+    while (l <> nil) do 
+    begin 
+        if (l^.num > A) and (l^.num < B) then 
+            armarNodo(l1, l^.num);
+
+        l := l^.sig;
+    end;
+end;
+
+
+{ 
+    Retorna una nueva lista con todos los elementos de la lista L mayores que A y menores que B.
+    supongo que la lista L se encuentra ordenada de manera ascendente.
+}
+procedure sublista_d(l:lista; var l1: lista; A:integer; B:integer);
+begin 
+
+    while (l <> nil) and (l^.num <= B) do 
+    begin 
+        if (l^.num > A) and (l^.num < B) then 
+            armarNodo(l1, l^.num);
+
+        l := l^.sig;
+    end;
+end;
+
+
+{ 
+    Retorna una nueva lista con todos los elementos de la lista L mayores que A y menores que B.
+    supongo que la lista L se encuentra ordenada de manera ascendente.
+}
+procedure sublista_e(l:lista; var l1: lista; A:integer; B:integer);
+begin 
+    while (l <> nil) and (l^.num < A) do 
+    begin 
+        if (l^.num < A) and (l^.num > B) then 
+            armarNodo(l1, l^.num);
+
+        l := l^.sig;
+    end;
+end;
+
+
 var
-    pri : lista;
+    pri, pri2, pri3 : lista;
     valor : integer;
 
 begin
-    pri := nil;
+    inicializarLista(pri);
     write('Ingrese un numero: ');
     readln(valor);
 
@@ -110,7 +192,24 @@ begin
     
     { d. Incremento la lista con un valor fijo }
     incrementarTodo(pri, 10);
+
+    writeln('Lista ordenada?: ', EstaOrdenada(pri));
+
+    imprimirLista(pri);
+    write('Elegir un elento a eliminar: ');
+    readln(valor);
+
+
+    eliminar(pri, valor);
     imprimirLista(pri);
 
-    writeln(EstaOrdenada(pri));
+    inicializarLista(pri2);
+    sublista(pri, pri2, 15, 30);
+    writeln('Lista con elementos de la primera, mayores que 15 y menores que 30');
+    imprimirLista(pri2);
+
+    inicializarLista(pri3);
+    sublista_d(pri, pri3, 15, 30);
+    writeln('Lista ordenada asendente');
+    imprimirLista(pri3);
 end.
