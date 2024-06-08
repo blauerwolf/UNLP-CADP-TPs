@@ -20,7 +20,7 @@
 program ejercicio_10;
 
 type 
-    clIente = record 
+    cliente = record 
         dni: integer;
         cod: integer;
     end;
@@ -109,6 +109,32 @@ begin
 end;
 
 
+
+{ 
+    Recibe como parámetro la lista de clientes en espera, y retorna el número y DNI del cliente 
+    a ser atendido y la lista actualizada. El cliente atendido debe eliminarse de la lista de espera. 
+}
+procedure AtenderCliente(var l:lista; var c:cliente);
+var
+    actual, sig: lista;
+begin 
+
+    actual := l;
+
+    if (actual <> nil) then
+    begin 
+        if (actual^.sig = nil) then 
+            l := nil
+        else
+            l := actual^.sig;
+
+        c.dni := actual^.cli.dni;
+        c.cod := actual^.cli.cod;
+        dispose(actual);
+    end;
+end;
+
+
 procedure imprimirLista(l: lista);
 begin 
     while (l <> nil) do 
@@ -124,10 +150,19 @@ end;
 
 var 
     pri: lista;
+    cli: cliente;
 begin 
     inicializarLista(pri);
     RecibirCliente(pri);
 
     imprimirLista(pri);
+    AtenderCliente(pri, cli);
+
+
+    writeln('Próximo turno: ', cli.cod, ' - DNI: ', cli.dni);
+    writeln();
+
+    imprimirLista(pri);
+
 
 end.
