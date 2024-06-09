@@ -197,13 +197,6 @@ var
 begin 
   combina := true;
 
-  writeln('Combina transoprte');
-  for i := 1 to 5 do 
-  begin
-    write(cm[i], ' ');
-    writeln();
-  end;
-
   if (cm[5] > 0) then 
   begin 
     if (cm[1] = 0) and (cm[2] = 0) and (cm[3] = 0) and (cm[4] = 0) then
@@ -211,8 +204,6 @@ begin
   end
   else 
     combina := false;
-
-  writeln(combina);
 
   combinaTransporte := combina;
 end;
@@ -281,8 +272,6 @@ begin
     if (combinaTransporte(cm)) then 
       aluCombina := aluCombina + 1;
 
-
- 
   end;
 
   writeln('Cantidad de alumnos que realizaron más de 6 viajes por día: ', totMas6Viajes);
@@ -330,6 +319,5 @@ begin
   imprimirLista(l, m);
 
   procesarViajes(l, p, m);
-
 
 end.
