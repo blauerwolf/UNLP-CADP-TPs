@@ -115,7 +115,6 @@ begin
             actual := ant;
         end;
     end;
-
 end;
 
 
