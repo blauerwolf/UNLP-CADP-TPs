@@ -13,3 +13,5 @@
     c. Si la cantidad de entradas vendidas para el evento número 50 alcanzó la cantidad máxima de
     personas permitidas.
 }
+
+// TODO
